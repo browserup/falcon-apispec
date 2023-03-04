@@ -62,5 +62,7 @@ class FalconPlugin(BasePlugin):
 
         for method_name, method_handler in methods.items():
             docstring_yaml = yaml_utils.load_yaml_from_docstring(method_handler.__doc__)
-            operations[method_name] = docstring_yaml or dict()
+            if len(docstring_yaml) != 0:
+                operations[method_name] = docstring_yaml or dict()
+        print(repr(operations))
         return path
